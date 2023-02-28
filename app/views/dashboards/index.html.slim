@@ -1,0 +1,30 @@
+div[data-controller="modal-form"]
+  .flex.h-screen.items-center.justify-center
+    .relative.bg-white.px-6.pt-4.pb-4.shadow-xl.ring-1.ring-gray-900/5.sm:mx-auto.sm:max-w-lg.sm:rounded-lg.sm:px-10
+      .mx-auto.max-w-md
+        .divide-y.divide-gray-300/50
+          .space-y-8.py-8.text-base.leading-7.text-gray-600
+            button#personalDataModalOpenBtn.focus:shadow-outline.h-12.w-full.rounded-lg.bg-indigo-700.px-6.text-indigo-100.transition-colors.duration-150.hover:bg-indigo-800[data-action="click->modal-form#open_personal_data_modal"]
+              | Personal Data
+            button#employmentModalOpenBtn.focus:shadow-outline.h-12.w-full.rounded-lg.bg-indigo-700.px-6.text-indigo-100.transition-colors.duration-150.hover:bg-indigo-800[data-action="click->modal-form#open_employment_modal"]
+              | Employment
+  #personalDataModalOverlay.fixed.inset-0.z-40.hidden.w-screen.h-screen.bg-gray-900.bg-opacity-60[data-modal-form-target="personalDataModalOverlay"]
+  #personalDataModal.fixed.z-50.hidden.px-8.py-6.space-y-5.-translate-x-1/2.-translate-y-1/2.bg-white.rounded-md.top-1/2.left-1/2.w-96.drop-shadow-lg[data-modal-form-target="personalDataModal"]
+    h1.text-2xl.font-semibold
+      | Dialog Title
+    .py-5.border-t.border-b.border-gray-300
+      p
+        | Welcome to KindaCode.com. Hope you will find something useful. Have a nice day and happy coding
+    .flex.justify-end
+      button#personalDataModalCloseBtn.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.py-2.5.text-center.dark:bg-blue-600.dark:hover:bg-blue-700.dark:focus:ring-blue-800[data-action="click->modal-form#close_personal_data_modal" type="button"]
+        | Close
+  #employmentModalOverlay.fixed.inset-0.z-40.hidden.w-screen.h-screen.bg-gray-900.bg-opacity-60[data-modal-form-target="employmentModalOverlay"]
+  #employmentModal.fixed.z-50.hidden.px-8.py-6.space-y-5.-translate-x-1/2.-translate-y-1/2.bg-white.rounded-md.top-1/2.left-1/2.w-96.drop-shadow-lg[data-modal-form-target="employmentModal"]
+    h1.text-2xl.font-semibold
+      | Dialog Title
+    .py-5.border-t.border-b.border-gray-300
+      p
+        | Welcome to KindaCode.com. Hope you will find something useful. Have a nice day and happy coding
+    .flex.justify-end
+      button#employmentModalCloseBtn.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.py-2.5.text-center.dark:bg-blue-600.dark:hover:bg-blue-700.dark:focus:ring-blue-800[data-action="click->modal-form#close_employment_modal" type="button"]
+        | Close
