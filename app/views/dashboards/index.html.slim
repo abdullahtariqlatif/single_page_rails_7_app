@@ -15,35 +15,37 @@ div[data-controller="modal-form"]
         h2.text-lg.font-semibold
           | Personal Data
       .p-4.modal-body
-        form.space-y-4
+        = form_with(model: User.new, url: dashboard_create_user_path, method: :post, local: true, class: "space-y-4") do |form|
           div
-            label.block.font-bold.text-gray-700[for="first-name"]
-              | First Name
+            = form.label :first_name, class: "block font-bold text-gray-700" do
+              |  First Name
               span.text-red-500
                 | *
-            input#first-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="first-name" required]
+            = form.text_field :first_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
           div
-            label.block.font-bold.text-gray-700[for="last-name"]
-              | Last Name
+            = form.label :last_name, class: "block font-bold text-gray-700" do
+              |  Last Name
               span.text-red-500
                 | *
-            input#last-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="last-name" required]
+            = form.text_field :last_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
           div
-            label.block.font-bold.text-gray-700[for="nick-name"]
-              | Nick Name
-            input#nick-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="nick-name"]
-          div
-            label.block.font-bold.text-gray-700[for="email"]
-              | Email
+            = form.label :nick_name, class: "block font-bold text-gray-700" do
+              |  Nick Name
               span.text-red-500
                 | *
-            input#email.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="email" name="email" required]
+            = form.text_field :nick_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
           div
-            label.block.font-bold.text-gray-700[for="phone"]
-              | Phone
+            = form.label :email, class: "block font-bold text-gray-700" do
+              |  Email
               span.text-red-500
                 | *
-            input#phone.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="tel" name="phone" required]
+            = form.email_field :email, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
+          div
+            = form.label :phone, class: "block font-bold text-gray-700" do
+              |  Phone Number
+              span.text-red-500
+                | *
+            = form.telephone_field :phone, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
       .flex.justify-end.px-4.py-5.pt-4.modal-footer
         button#personalDataModalCloseBtn.px-4.py-2.mr-2.font-bold.text-white.bg-gray-400.rounded.hover:bg-gray-500[data-action="click->modal-form#close_personal_data_modal" type="button"]
           | Cancel
@@ -56,35 +58,25 @@ div[data-controller="modal-form"]
         h2.text-lg.font-semibold
           | Employment
       .p-4.modal-body
-        form.space-y-4
+        = form_with(model: Employment.new, url: dashboard_create_employment_path, method: :post, local: true, class: "space-y-4") do |form|
           div
-            label.block.font-bold.text-gray-700[for="first-name"]
-              | First Name
+            = form.label :employer_name, class: "block font-bold text-gray-700" do
+              |  First Name
               span.text-red-500
                 | *
-            input#first-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="first-name" required]
+            = form.text_field :employer_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
           div
-            label.block.font-bold.text-gray-700[for="last-name"]
-              | Last Name
+            = form.label :employment_started_date, class: "block font-bold text-gray-700" do
+              |  First Name
               span.text-red-500
                 | *
-            input#last-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="last-name" required]
+            = form.date_field :employment_started_date, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
           div
-            label.block.font-bold.text-gray-700[for="nick-name"]
-              | Nick Name
-            input#nick-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="nick-name"]
-          div
-            label.block.font-bold.text-gray-700[for="email"]
-              | Email
+            = form.label :employment_ended_date, class: "block font-bold text-gray-700" do
+              |  First Name
               span.text-red-500
                 | *
-            input#email.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="email" name="email" required]
-          div
-            label.block.font-bold.text-gray-700[for="phone"]
-              | Phone
-              span.text-red-500
-                | *
-            input#phone.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="tel" name="phone" required]
+            = form.date_field :employment_ended_date, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
       .flex.justify-end.px-4.py-5.pt-4.modal-footer
         button#employmentModalCloseBtn.px-4.py-2.mr-2.font-bold.text-white.bg-gray-400.rounded.hover:bg-gray-500[data-action="click->modal-form#close_employment_modal" type="button"]
           | Cancel
