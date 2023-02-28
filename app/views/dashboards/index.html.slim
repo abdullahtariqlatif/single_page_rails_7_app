@@ -1,30 +1,92 @@
 div[data-controller="modal-form"]
-  .flex.h-screen.items-center.justify-center
-    .relative.bg-white.px-6.pt-4.pb-4.shadow-xl.ring-1.ring-gray-900/5.sm:mx-auto.sm:max-w-lg.sm:rounded-lg.sm:px-10
-      .mx-auto.max-w-md
+  .flex.items-center.justify-center.h-screen
+    .relative.px-6.pt-4.pb-4.bg-white.shadow-xl.ring-1.ring-gray-900/5.sm:mx-auto.sm:max-w-lg.sm:rounded-lg.sm:px-10
+      .max-w-md.mx-auto
         .divide-y.divide-gray-300/50
-          .space-y-8.py-8.text-base.leading-7.text-gray-600
-            button#personalDataModalOpenBtn.focus:shadow-outline.h-12.w-full.rounded-lg.bg-indigo-700.px-6.text-indigo-100.transition-colors.duration-150.hover:bg-indigo-800[data-action="click->modal-form#open_personal_data_modal"]
+          .py-8.space-y-8.text-base.leading-7.text-gray-600
+            button#personalDataModalOpenBtn.w-full.h-12.px-6.text-indigo-100.transition-colors.duration-150.bg-indigo-700.rounded-lg.focus:shadow-outline.hover:bg-indigo-800[data-action="click->modal-form#open_personal_data_modal"]
               | Personal Data
-            button#employmentModalOpenBtn.focus:shadow-outline.h-12.w-full.rounded-lg.bg-indigo-700.px-6.text-indigo-100.transition-colors.duration-150.hover:bg-indigo-800[data-action="click->modal-form#open_employment_modal"]
+            button#employmentModalOpenBtn.w-full.h-12.px-6.text-indigo-100.transition-colors.duration-150.bg-indigo-700.rounded-lg.focus:shadow-outline.hover:bg-indigo-800[data-action="click->modal-form#open_employment_modal"]
               | Employment
-  #personalDataModalOverlay.fixed.inset-0.z-40.hidden.w-screen.h-screen.bg-gray-900.bg-opacity-60[data-modal-form-target="personalDataModalOverlay"]
-  #personalDataModal.fixed.z-50.hidden.px-8.py-6.space-y-5.-translate-x-1/2.-translate-y-1/2.bg-white.rounded-md.top-1/2.left-1/2.w-96.drop-shadow-lg[data-modal-form-target="personalDataModal"]
-    h1.text-2xl.font-semibold
-      | Dialog Title
-    .py-5.border-t.border-b.border-gray-300
-      p
-        | Welcome to KindaCode.com. Hope you will find something useful. Have a nice day and happy coding
-    .flex.justify-end
-      button#personalDataModalCloseBtn.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.py-2.5.text-center.dark:bg-blue-600.dark:hover:bg-blue-700.dark:focus:ring-blue-800[data-action="click->modal-form#close_personal_data_modal" type="button"]
-        | Close
-  #employmentModalOverlay.fixed.inset-0.z-40.hidden.w-screen.h-screen.bg-gray-900.bg-opacity-60[data-modal-form-target="employmentModalOverlay"]
-  #employmentModal.fixed.z-50.hidden.px-8.py-6.space-y-5.-translate-x-1/2.-translate-y-1/2.bg-white.rounded-md.top-1/2.left-1/2.w-96.drop-shadow-lg[data-modal-form-target="employmentModal"]
-    h1.text-2xl.font-semibold
-      | Dialog Title
-    .py-5.border-t.border-b.border-gray-300
-      p
-        | Welcome to KindaCode.com. Hope you will find something useful. Have a nice day and happy coding
-    .flex.justify-end
-      button#employmentModalCloseBtn.text-white.bg-blue-700.hover:bg-blue-800.focus:ring-4.focus:outline-none.focus:ring-blue-300.font-medium.rounded-lg.text-sm.px-5.py-2.5.text-center.dark:bg-blue-600.dark:hover:bg-blue-700.dark:focus:ring-blue-800[data-action="click->modal-form#close_employment_modal" type="button"]
-        | Close
+  #personalDataModal.fixed.top-0.left-0.items-center.justify-center.flex.hidden.w-full.h-full.modal[data-modal-form-target="personalDataModal"]
+    .absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="personalDataModalOverlay"]
+    .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md
+      .px-4.py-2.bg-gray-300.modal-header
+        h2.text-lg.font-semibold
+          | Personal Data
+      .p-4.modal-body
+        form.space-y-4
+          div
+            label.block.font-bold.text-gray-700[for="first-name"]
+              | First Name
+              span.text-red-500
+                | *
+            input#first-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="first-name" required]
+          div
+            label.block.font-bold.text-gray-700[for="last-name"]
+              | Last Name
+              span.text-red-500
+                | *
+            input#last-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="last-name" required]
+          div
+            label.block.font-bold.text-gray-700[for="nick-name"]
+              | Nick Name
+            input#nick-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="nick-name"]
+          div
+            label.block.font-bold.text-gray-700[for="email"]
+              | Email
+              span.text-red-500
+                | *
+            input#email.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="email" name="email" required]
+          div
+            label.block.font-bold.text-gray-700[for="phone"]
+              | Phone
+              span.text-red-500
+                | *
+            input#phone.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="tel" name="phone" required]
+      .flex.justify-end.px-4.py-5.pt-4.modal-footer
+        button#personalDataModalCloseBtn.px-4.py-2.mr-2.font-bold.text-white.bg-gray-400.rounded.hover:bg-gray-500[data-action="click->modal-form#close_personal_data_modal" type="button"]
+          | Cancel
+        button.px-4.py-2.font-bold.text-white.bg-blue-500.rounded.hover:bg-blue-700[type="button"]
+          | Save
+  #employmentModal.fixed.top-0.left-0.items-center.justify-center.flex.hidden.w-full.h-full.modal[data-modal-form-target="employmentModal"]
+    .absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="employmentModalOverlay"]
+    .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md
+      .px-4.py-2.bg-gray-300.modal-header
+        h2.text-lg.font-semibold
+          | Employment
+      .p-4.modal-body
+        form.space-y-4
+          div
+            label.block.font-bold.text-gray-700[for="first-name"]
+              | First Name
+              span.text-red-500
+                | *
+            input#first-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="first-name" required]
+          div
+            label.block.font-bold.text-gray-700[for="last-name"]
+              | Last Name
+              span.text-red-500
+                | *
+            input#last-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="last-name" required]
+          div
+            label.block.font-bold.text-gray-700[for="nick-name"]
+              | Nick Name
+            input#nick-name.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="text" name="nick-name"]
+          div
+            label.block.font-bold.text-gray-700[for="email"]
+              | Email
+              span.text-red-500
+                | *
+            input#email.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="email" name="email" required]
+          div
+            label.block.font-bold.text-gray-700[for="phone"]
+              | Phone
+              span.text-red-500
+                | *
+            input#phone.block.w-full.border-gray-300.rounded-md.shadow-sm.focus:border-blue-500.focus:ring.focus:ring-blue-500.focus:ring-opacity-50[type="tel" name="phone" required]
+      .flex.justify-end.px-4.py-5.pt-4.modal-footer
+        button#employmentModalCloseBtn.px-4.py-2.mr-2.font-bold.text-white.bg-gray-400.rounded.hover:bg-gray-500[data-action="click->modal-form#close_employment_modal" type="button"]
+          | Cancel
+        button.px-4.py-2.font-bold.text-white.bg-blue-500.rounded.hover:bg-blue-700[type="button"]
+          | Save
