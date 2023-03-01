@@ -8,50 +8,55 @@ div[data-controller="modal-form"]
               | Personal Data
             button#employmentModalOpenBtn.w-full.h-12.px-6.text-indigo-100.transition-colors.duration-150.bg-indigo-700.rounded-lg.focus:shadow-outline.hover:bg-indigo-800[data-action="click->modal-form#open_employment_modal"]
               | Employment
-  #personalDataModal.fixed.top-0.left-0.items-center.justify-center.flex.hidden.w-full.h-full.modal[data-modal-form-target="personalDataModal"]
+  #personalDataModal.fixed.top-0.left-0.flex.items-center.justify-center.hidden.w-full.h-full.modal[data-modal-form-target="personalDataModal"]
     .absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="personalDataModalOverlay"]
-    .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md
+    .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md[data-controller="form"]
       .px-4.py-2.bg-gray-300.modal-header
         h2.text-lg.font-semibold
           | Personal Data
       .p-4.modal-body
-        = form_with(model: User.new, url: dashboard_create_user_path, method: :post, local: true, class: "space-y-4") do |form|
+        = form_with(model: User.new, url: dashboard_create_user_path, method: :post, local: true, class: "space-y-4", id: 'user-form', data: { form_target: "userForm" }) do |form|
           div
-            = form.label :first_name, class: "block font-bold text-gray-700" do
+            = form.label :first_name, class: "block font-bold text-gray-700", data: {form_target: "firstNameLabel"} do
               |  First Name
               span.text-red-500
                 | *
-            = form.text_field :first_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
+            = form.text_field :first_name, maxlength: 25, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true, data: {form_target: "firstNameInput"}
+            .invalid-feedback[data-form-target="firstNameInputError"]
           div
-            = form.label :last_name, class: "block font-bold text-gray-700" do
+            = form.label :last_name, class: "block font-bold text-gray-700", data: {form_target: "lastNameLabel"} do
               |  Last Name
               span.text-red-500
                 | *
-            = form.text_field :last_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
+            = form.text_field :last_name, maxlength: 50, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true, data: {form_target: "lastNameInput"}
+            .invalid-feedback[data-form-target="lastNameInputError"]
           div
-            = form.label :nick_name, class: "block font-bold text-gray-700" do
+            = form.label :nick_name, class: "block font-bold text-gray-700", data: {form_target: "nickNameLabel"} do
               |  Nick Name
               span.text-red-500
                 | *
-            = form.text_field :nick_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+            = form.text_field :nick_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", data: {form_target: "nickNameInput"}
+            .invalid-feedback[data-form-target="nickNameInputError"]
           div
-            = form.label :email, class: "block font-bold text-gray-700" do
+            = form.label :email, class: "block font-bold text-gray-700", data: {form_target: "emailLabel"} do
               |  Email
               span.text-red-500
                 | *
-            = form.email_field :email, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
+            = form.email_field :email, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true, data: {form_target: "emailInput"}
+            .invalid-feedback[data-form-target="emailInputError"]
           div
-            = form.label :phone, class: "block font-bold text-gray-700" do
+            = form.label :phone, class: "block font-bold text-gray-700", data: {form_target: "phoneLabel"} do
               |  Phone Number
               span.text-red-500
                 | *
-            = form.telephone_field :phone, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true
+            = form.telephone_field :phone, maxlength: 25, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true, data: {form_target: "phoneInput"}
+            .invalid-feedback[data-form-target="phoneInputError"]
       .flex.justify-end.px-4.py-5.pt-4.modal-footer
         button#personalDataModalCloseBtn.px-4.py-2.mr-2.font-bold.text-white.bg-gray-400.rounded.hover:bg-gray-500[data-action="click->modal-form#close_personal_data_modal" type="button"]
           | Cancel
-        button.px-4.py-2.font-bold.text-white.bg-blue-500.rounded.hover:bg-blue-700[type="button"]
-          | Save
-  #employmentModal.fixed.top-0.left-0.items-center.justify-center.flex.hidden.w-full.h-full.modal[data-modal-form-target="employmentModal"]
+        = button_tag class:"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700", data: {form_target: "userFormSubmitBtn"}, type: 'submit', form: 'user-form' do
+          |  Save
+  #employmentModal.fixed.top-0.left-0.flex.items-center.justify-center.hidden.w-full.h-full.modal[data-modal-form-target="employmentModal"]
     .absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="employmentModalOverlay"]
     .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md
       .px-4.py-2.bg-gray-300.modal-header

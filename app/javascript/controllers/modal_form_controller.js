@@ -1,5 +1,4 @@
 // app/javascript/controllers/modal_form_controller.js
-// import { Controller } from "stimulus"
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
