@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'dashboards#index'
 
   get 'dashboards/index'
+  get 'dashboards/test_view'
 
   post 'dashboard/create_user', to: 'dashboard#create_user'
   post 'dashboard/create_employment', to: 'dashboard#create_employment'
