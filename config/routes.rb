@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root 'dashboards#index'
+  root 'modal_dashboards#index'
 
-  get 'dashboards/index'
-  get 'dashboards/test_view'
+  get 'modal_dashboards/index'
+  get 'modal_dashboards/test_view'
 
-  post 'dashboard/create_user', to: 'dashboard#create_user'
-  post 'dashboard/create_employment', to: 'dashboard#create_employment'
+  post 'modal_dashboards/create_user', to: 'modal_dashboards#create_user'
+  post 'modal_dashboards/create_employment', to: 'modal_dashboards#create_employment'
 end

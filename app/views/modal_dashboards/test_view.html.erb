@@ -25,7 +25,7 @@
       <div class="p-4 modal-body">
 
         <!-- Tells Stimulus to create an instance of the controller class in form_controller.js -->
-        <%= form_with(model: User.new, url: dashboard_create_user_path, method: :post, local: true, class: "space-y-4", id: 'user-form', data: { form_target: "userForm" }) do |form| %>
+        <%= form_with(model: User.new, url: modal_dashboards_create_user_path, method: :post, local: true, class: "space-y-4", id: 'user-form', data: { form_target: "userForm" }) do |form| %>
           <!-- First Name -->
           <div>
             <%= form.label :first_name, class: "block font-bold text-gray-700", data: {form_target: "firstNameLabel"} do %>
@@ -64,10 +64,10 @@
 
           <!-- Phone -->
             <div>
-            <%= form.label :phone, class: "block font-bold text-gray-700", data: {form_target: "phoneLabel"} do %>
+            <%= form.label :phone_number, class: "block font-bold text-gray-700", data: {form_target: "phoneLabel"} do %>
               Phone Number<span class="text-red-500">*</span>
             <% end %>
-            <%= form.telephone_field :phone, maxlength: 25, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true, data: {form_target: "phoneInput"} %>
+            <%= form.telephone_field :phone_number, maxlength: 25, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true, data: {form_target: "phoneInput"} %>
             <div class="invalid-feedback" data-form-target="phoneInputError"></div>
           </div>
         <% end %>
@@ -94,7 +94,7 @@
 
       <!-- Modal Body -->
       <div class="p-4 modal-body">
-        <%= form_with(model: Employment.new, url: dashboard_create_employment_path, method: :post, local: true, class: "space-y-4") do |form| %>
+        <%= form_with(model: Employment.new, url: modal_dashboards_create_employment_path, method: :post, local: true, class: "space-y-4") do |form| %>
           <!-- Employer -->
           <div>
             <%= form.label :employer_name, class: "block font-bold text-gray-700" do %>
