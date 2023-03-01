@@ -94,12 +94,10 @@ export default class extends Controller {
 
     if (name === '' || !regex.test(name)) {
       // name is invalid
-      console.log('Invalid name');
       this.disableAllFields();
       return false;
     } else {
       // name is valid
-      console.log('Valid phone number');
       return true;
     }
   }
@@ -109,26 +107,22 @@ export default class extends Controller {
 
     if (email === '' || !regex.test(email)) {
       // Email is invalid
-      console.log('Invalid Email');
       this.disableAllFields();
       return false;
     } else {
       // Email is valid
-      console.log('Valid Email');
       return true;
     }
   }
 
   isValidPhoneNumber(phoneNumber) {
-    const regex = /^\d{3}-\d{3}-\d{4}$/;
+    const regex = /^(\d{3}-\d{3}-\d{4}|\d{10})$/;
     if (phoneNumber === '' || !regex.test(phoneNumber)) {
       // phone number is invalid
-      console.log('Invalid phone number');
       this.disableAllFields();
       return false;
     } else {
       // phone number is valid
-      console.log('Valid phone number');
       return true;
     }
   }
@@ -198,10 +192,8 @@ export default class extends Controller {
   //     //   body: formData
   //     // })
   //     // .then(response => {
-  //     //   console.log(response)
   //     // })
   //     // .catch(error => {
-  //     //   console.log(error)
   //     // })
   //     form.submit()
   //   }
