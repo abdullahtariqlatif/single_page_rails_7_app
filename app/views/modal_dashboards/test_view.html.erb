@@ -14,7 +14,7 @@
   </div>
 
   <!-- Personal Data Modal -->
-  <div data-modal-form-target="personalDataModal" id="personalDataModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full modal">
+  <div data-modal-form-target="personalDataModal" id="personalDataModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full overflow-y-auto modal">
     <div data-modal-form-target="personalDataModalOverlay" id="personalDataModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
     <div data-controller="form" class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
       <!-- Modal Header -->
@@ -81,7 +81,7 @@
           </div>
 
           <!-- Phone -->
-            <div>
+          <div>
             <%= form.label :phone_number, class: "block font-bold text-gray-700", data: {form_target: "phoneLabel"} do %>
               Phone Number<span class="text-red-500">*</span>
             <% end %>
@@ -101,48 +101,26 @@
   </div>
 
   <!-- Employment Modal-->
-  <div data-modal-form-target="employmentModal" data-form-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full modal">
+  <div data-modal-form-target="employmentModal" data-form-target="employmentModal" data-employment-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full overflow-y-auto modal">
     <div data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" id="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
 
-    <div class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
+    <div data-controller="employment" class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
       <!-- Modal Header -->
       <div class="px-4 py-2 bg-gray-300 modal-header">
         <h2 class="text-lg font-semibold">Employment</h2>
       </div>
 
-      <!-- Modal Body -->
-      <div class="p-4 modal-body">
-        <%= form_with(model: Employment.new, url: modal_dashboards_create_employment_path, method: :post, local: true, class: "space-y-4") do |form| %>
-          <!-- Employer -->
-          <div>
-            <%= form.label :employer_name, class: "block font-bold text-gray-700" do %>
-              Employer Name<span class="text-red-500">*</span>
-            <% end %>
-            <%= form.text_field :employer_name, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true %>
-          </div>
+      <%= render partial: 'modal_dashboards/partials/employment_form' %>
 
-          <!-- Employement Started Date -->
-          <div>
-            <%= form.label :employment_started_date, class: "block font-bold text-gray-700" do %>
-              Start Date<span class="text-red-500">*</span>
-            <% end %>
-            <%= form.date_field :employment_started_date, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true %>
-          </div>
-
-          <!-- Employement Ended Date -->
-          <div>
-            <%= form.label :employment_ended_date, class: "block font-bold text-gray-700" do %>
-              End Date<span class="text-red-500">*</span>
-            <% end %>
-            <%= form.date_field :employment_ended_date, class: "block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50", required: true %>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="flex justify-end px-4 py-5 pt-4 modal-footer">
+      <div data-employment-target="employmentModalFooter" class="flex justify-end px-4 py-5 pt-4 modal-footer">
         <button id="employmentModalCloseBtn"  data-action="click->modal-form#close_employment_modal" type="button" class="px-4 py-2 mr-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-500">Cancel</button>
-        <button type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Save</button>
+        <%= button_tag class:"px-4 py-2 mr-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-500", id: "addemploymentFieldsBtn", data: {employment_target: "addemploymentFieldsBtn", action: 'click->employment#addNewEmploymentForm'}, type: 'submit' do %>
+          Add Fields
+        <% end %>
+
+        <%= button_tag class:"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700", data: {employment_target: "submitAllBtn", action: 'click->employment#submitAllForms'}, type: 'submit' do %>
+          Save all Records
+        <% end %>
       </div>
     </div>
   </div>
