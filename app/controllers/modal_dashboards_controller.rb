@@ -11,11 +11,13 @@ class ModalDashboardsController < ApplicationController
 
     # Attempt to save the new user record to the database
     if @user.save
-      flash[:success] = "User successfully created!"
-      redirect_to modal_dashboards_index_path
+      respond_to do |format|
+        format.js { render json: { status: :created, message: 'Record saved successfully', user: @user } }
+      end
     else
-      flash[:error] = "Error creating user"
-      render :index
+      respond_to do |format|
+        format.js { render json: { status: :unprocessable_entity, errors: @user.errors } }
+      end
     end
   end
 

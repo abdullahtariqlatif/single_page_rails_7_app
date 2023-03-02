@@ -14,7 +14,9 @@ export default class extends Controller {
     "phoneInput",
     "phoneInputError",
     "userForm",
-    "userFormSubmitBtn"
+    "userFormSubmitBtn",
+    "successMessage",
+    "errorMessage",
   ]
 
   connect() {
@@ -24,16 +26,25 @@ export default class extends Controller {
     this.disableFields(this.phoneInputTarget)
     this.disableFields(this.userFormSubmitBtnTarget)
 
+    this.successMessageTarget.style.display = 'none';
+    this.errorMessageTarget.style.display = 'none';
+
     // add event listeners for input fields
     this.firstNameInputTarget.addEventListener("input", this.validateInput.bind(this));
+
     this.lastNameInputTarget.addEventListener("input", this.validateInput.bind(this));
+
     this.nickNameInputTarget.addEventListener("input", this.validateInput.bind(this));
+
     this.emailInputTarget.addEventListener("input", this.validateInput.bind(this));
+
     this.phoneInputTarget.addEventListener("input", this.validateInput.bind(this));
     this.phoneInputTarget.addEventListener("input", () => {
       const formattedPhone = this.phoneInputTarget.value.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
       this.phoneInputTarget.value = formattedPhone;
     });
+
+    this.userFormTarget.addEventListener("submit", this.submitForm.bind(this));
   }
 
   validateInput(event) {
@@ -171,31 +182,56 @@ export default class extends Controller {
     input.classList.remove('error-message');
   }
 
+  submitForm(event) {
+    event.preventDefault()
 
-  // submitForm(event) {
-  //   event.preventDefault()
+    const form = event.target
+    const url = this.userFormTarget.action
+    const method = this.userFormTarget.method
+    const formData = new FormData(this.userFormTarget)
 
-  //   const form = event.target
+    if (this.isValidName(this.firstNameInputTarget.value) &&
+        this.isValidName(this.lastNameInputTarget.value) &&
+        this.isValidName(this.nickNameInputTarget.value) &&
+        this.isValidEmail(this.emailInputTarget.value) &&
+        this.isValidPhoneNumber(this.phoneInputTarget.value))
+    {
+      fetch(url, {
+        method: method,
+        body: formData,
+        headers: {
+          'X-CSRF-Token': form.querySelector('input[name="authenticity_token"]').value
+        }
+      }).then(response => {
+        return response.text(); // Convert response to text format first
+      }).then(text => {
+        const json = JSON.parse(text); // Parse the JSON data
 
-  //   const url = this.userFormTarget.action
-  //   const method = this.userFormTarget.method
-  //   const formData = new FormData(this.userFormTarget)
+        if (json.status == "created") {
+          this.afterSuccess(json.message)
+        } else {
+          this.afterFailure(json.errors)
+        }
+      }).catch(error => {
+      })
+    }
+  }
 
-  //   if (this.isValidName(this.firstNameInputTarget.value) &&
-  //       this.isValidName(this.lastNameInputTarget.value) &&
-  //       this.isValidName(this.nickNameInputTarget.value) &&
-  //       this.isValidEmail(this.emailInputTarget.value) &&
-  //       this.isValidPhoneNumber(this.phoneInputTarget.value))
-  //   {
-  //     // fetch(url, {
-  //     //   method: method,
-  //     //   body: formData
-  //     // })
-  //     // .then(response => {
-  //     // })
-  //     // .catch(error => {
-  //     // })
-  //     form.submit()
-  //   }
-  // }
+  afterSuccess(message) {
+    this.successMessageTarget.textContent = message;
+    this.successMessageTarget.style.display = 'block';
+
+    setTimeout(() => {
+      this.successMessageTarget.style.display = 'none';
+    }, 5000);
+  }
+
+  afterFailure(errors) {
+    this.errorMessageTarget.textContent = errors.join(', ');
+    this.errorMessageTarget.style.display = 'block';
+
+    setTimeout(() => {
+      this.errorMessageTarget.style.display = 'none';
+    }, 5000);
+  }
 }
