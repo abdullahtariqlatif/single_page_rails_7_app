@@ -209,10 +209,19 @@ export default class extends Controller {
 
         if (json.status == "created") {
           this.afterSuccess(json.message)
+
+          const employmentModal = document.querySelector('#employmentModal');
+          const employmentModalOverlay = document.querySelector('#employmentModal');
+          employmentModal.classList.remove('hidden');
+          employmentModalOverlay.classList.remove('hidden');
+
+          const personalDataModal = document.querySelector('#personalDataModal');
+          const personalDataModalOverlay = document.querySelector('#personalDataModalOverlay');
+          personalDataModal.classList.add('hidden');
+          personalDataModalOverlay.classList.add('hidden');
         } else {
           this.afterFailure(json.errors)
         }
-      }).catch(error => {
       })
     }
   }

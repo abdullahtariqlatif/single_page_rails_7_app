@@ -15,7 +15,7 @@
 
   <!-- Personal Data Modal -->
   <div data-modal-form-target="personalDataModal" id="personalDataModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full modal">
-    <div data-modal-form-target="personalDataModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
+    <div data-modal-form-target="personalDataModalOverlay" id="personalDataModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
     <div data-controller="form" class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
       <!-- Modal Header -->
       <div class="px-4 py-2 bg-gray-300 modal-header">
@@ -101,8 +101,8 @@
   </div>
 
   <!-- Employment Modal-->
-  <div data-modal-form-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full modal">
-    <div data-modal-form-target="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
+  <div data-modal-form-target="employmentModal" data-form-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full modal">
+    <div data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" id="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
 
     <div class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
       <!-- Modal Header -->

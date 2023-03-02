@@ -9,13 +9,27 @@ div[data-controller="modal-form"]
             button#employmentModalOpenBtn.w-full.h-12.px-6.text-indigo-100.transition-colors.duration-150.bg-indigo-700.rounded-lg.focus:shadow-outline.hover:bg-indigo-800[data-action="click->modal-form#open_employment_modal"]
               | Employment
   #personalDataModal.fixed.top-0.left-0.flex.items-center.justify-center.hidden.w-full.h-full.modal[data-modal-form-target="personalDataModal"]
-    .absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="personalDataModalOverlay"]
+    #personalDataModalOverlay.absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="personalDataModalOverlay"]
     .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md[data-controller="form"]
       .px-4.py-2.bg-gray-300.modal-header
         h2.text-lg.font-semibold
           | Personal Data
       .p-4.modal-body
-        = form_with(model: User.new, url: modal_dashboards_create_user_path, method: :post, local: true, class: "space-y-4", id: 'user-form', data: { form_target: "userForm" }) do |form|
+        .error-message[role="alert" data-form-target="errorMessage"]
+          .px-4.py-2.font-bold.text-white.bg-red-500.rounded-t
+            |  Error
+          .px-4.py-3.text-red-700.bg-red-100.border.border-t-0.border-red-400.rounded-b
+            p
+              | Record not saved
+        .px-4.py-3.text-teal-900.bg-teal-100.border-t-4.border-teal-500.rounded-b.shadow-md.success-message[data-form-target="successMessage" role="alert"]
+          .flex
+            .py-1
+              svg.w-6.h-6.mr-4.text-teal-500.fill-current[xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"]
+                path[d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"]
+            div
+              p.font-bold
+                | Record Saved
+        = form_with(model: User.new, url: modal_dashboards_create_user_path, method: :post, remote: true, class: "space-y-4", id: 'user-form', data: { form_target: "userForm" }) do |form|
           div
             = form.label :first_name, class: "block font-bold text-gray-700", data: {form_target: "firstNameLabel"} do
               |  First Name
@@ -56,8 +70,8 @@ div[data-controller="modal-form"]
           | Cancel
         = button_tag class:"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700", data: {form_target: "userFormSubmitBtn"}, type: 'submit', form: 'user-form' do
           |  Save
-  #employmentModal.fixed.top-0.left-0.flex.items-center.justify-center.hidden.w-full.h-full.modal[data-modal-form-target="employmentModal"]
-    .absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="employmentModalOverlay"]
+  #employmentModal.fixed.top-0.left-0.flex.items-center.justify-center.hidden.w-full.h-full.modal[data-modal-form-target="employmentModal" data-form-target="employmentModal"]
+    #employmentModalOverlay.absolute.w-full.h-full.bg-gray-900.opacity-50.modal-overlay[data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay"]
     .z-50.w-11/12.mx-auto.overflow-y-auto.bg-white.rounded.shadow-lg.modal-container.md:max-w-md
       .px-4.py-2.bg-gray-300.modal-header
         h2.text-lg.font-semibold
