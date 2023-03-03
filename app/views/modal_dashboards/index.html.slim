@@ -73,7 +73,19 @@ div[data-controller="modal-form"]
       .px-4.py-4.bg-gray-300
         h2.text-lg.font-semibold
           | Employment
-      .px-4.py-4.overflow-y-auto.max-h-96[data-employment-target="modalBodysDiv"]
+      .px-4.py-4.overflow-y-auto.max-h-96[data-modal-form-target="modalBodysDiv" data-employment-target="modalBodysDiv"]
+        div[data-employment-target="errorMessage"]
+          .px-4.py-2.font-bold.text-white.bg-red-500.rounded-t
+            |  Error
+          .px-4.py-4.text-red-700.bg-red-100.border.border-t-0.border-red-400.rounded-b
+            p
+              | Record not saved
+        div[data-employment-target="successMessage"]
+          .px-4.py-2.font-bold.text-white.bg-green-500.rounded-t
+            |  Success
+          .px-4.py-4.text-green-700.bg-green-100.border.border-t-0.border-green-400.rounded-b
+            p
+              | Record saved
         = render partial: 'modal_dashboards/partials/employment_form'
       .flex.justify-end.px-2.pt-8.pb-4
         = button_tag class:"px-4 py-2 mr-12 font-bold text-white bg-red-400 rounded hover:bg-red-500", id: "addemploymentFieldsBtn", data: {employment_target: "addemploymentFieldsBtn", action: 'click->employment#addNewEmploymentForm'}, type: 'submit' do

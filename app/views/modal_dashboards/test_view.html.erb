@@ -114,6 +114,26 @@
 
       <!-- Modal Body -->
       <div data-modal-form-target="modalBodysDiv" data-employment-target="modalBodysDiv" class="px-4 py-4 overflow-y-auto max-h-96">
+        <!-- Error Div -->
+        <div data-employment-target="errorMessage">
+          <div class="px-4 py-2 font-bold text-white bg-red-500 rounded-t">
+            Error
+          </div>
+          <div class="px-4 py-4 text-red-700 bg-red-100 border border-t-0 border-red-400 rounded-b">
+            <p>Record not saved</p>
+          </div>
+        </div>
+
+        <!-- Success Div -->
+        <div data-employment-target="successMessage">
+          <div class="px-4 py-2 font-bold text-white bg-green-500 rounded-t">
+            Success
+          </div>
+          <div class="px-4 py-4 text-green-700 bg-green-100 border border-t-0 border-green-400 rounded-b">
+            <p>Record saved</p>
+          </div>
+        </div>
+
         <%= render partial: 'modal_dashboards/partials/employment_form' %>
       </div>
 

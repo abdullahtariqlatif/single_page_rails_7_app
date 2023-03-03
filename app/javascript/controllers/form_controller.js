@@ -156,18 +156,6 @@ export default class extends Controller {
   }
 
   disableAllFields() {
-    // this.lastNameInputTarget.disabled = true;
-    // this.lastNameInputTarget.classList.add("bg-gray-300")
-
-    // this.nickNameInputTarget.disabled = true;
-    // this.nickNameInputTarget.classList.add("bg-gray-300")
-
-    // this.emailInputTarget.disabled = true;
-    // this.emailInputTarget.classList.add("bg-gray-300")
-
-    // this.phoneInputTarget.disabled = true;
-    // this.phoneInputTarget.classList.add("bg-gray-300")
-
     this.userFormSubmitBtnTarget.disabled = true;
     this.userFormSubmitBtnTarget.classList.add("bg-gray-300")
   }
