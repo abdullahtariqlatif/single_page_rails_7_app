@@ -2,9 +2,6 @@ class ModalDashboardsController < ApplicationController
   def index
   end
 
-  def test_view
-  end
-
   def create_user
     # Create a new User object with the given parameters
     @user = User.new(user_params)

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root 'modal_dashboards#index'
 
   get 'modal_dashboards/index'
-  get 'modal_dashboards/test_view'
 
   post 'modal_dashboards/create_user', to: 'modal_dashboards#create_user'
   post 'modal_dashboards/create_employment', to: 'modal_dashboards#create_employment'
