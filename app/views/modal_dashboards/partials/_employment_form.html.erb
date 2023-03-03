@@ -1,5 +1,5 @@
 <!-- Modal Body -->
-<div class="p-4 modal-body">
+<div class="px-4 pb-4">
   <%= form_with(model: Employment.new, url: modal_dashboards_create_employment_path, method: :post, remote: true, class: "space-y-4") do |form| %>
     <!-- Employer -->
     <div>
@@ -29,3 +29,5 @@
     </div>
   <% end %>
 </div>
+
+<hr class="px-4 py-2">

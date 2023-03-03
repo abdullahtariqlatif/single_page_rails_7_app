@@ -1,44 +1,45 @@
 <!-- Tells Stimulus to create an instance of the controller class in modal_controller.js -->
 <div data-controller="modal-form">
   <div class="flex items-center justify-center h-screen">
-    <div class="relative px-6 pt-4 pb-4 bg-white shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+    <div class="px-6 py-6 bg-white shadow-xl ring-2 ring-gray-900/10 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
       <div class="max-w-md mx-auto">
-        <div class="divide-y divide-gray-300/50">
-          <div class="py-8 space-y-8 text-base leading-7 text-gray-600">
-            <button id="personalDataModalOpenBtn" data-action="click->modal-form#open_personal_data_modal" class="w-full h-12 px-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Personal Data</button>
-            <button id="employmentModalOpenBtn"  data-action="click->modal-form#open_employment_modal" class="w-full h-12 px-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Employment</button>
-          </div>
+        <div class="py-8 space-y-8">
+          <button id="personalDataModalOpenBtn" data-action="click->modal-form#open_personal_data_modal" class="w-full h-12 px-6 text-white transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Personal Data</button>
+          <button id="employmentModalOpenBtn"  data-action="click->modal-form#open_employment_modal" class="w-full h-12 px-6 text-white transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Employment</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Personal Data Modal -->
-  <div data-modal-form-target="personalDataModal" id="personalDataModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full overflow-y-auto modal">
-    <div data-modal-form-target="personalDataModalOverlay" id="personalDataModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
-    <div data-controller="form" class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
+  <div data-modal-form-target="personalDataModal" id="personalDataModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full">
+    <div data-modal-form-target="personalDataModalOverlay" id="personalDataModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+    <div data-controller="form" class="z-50 w-11/12 mx-auto bg-white rounded shadow-lg md:max-w-md">
       <!-- Modal Header -->
-      <div class="px-4 py-2 bg-gray-300 modal-header">
+      <div class="px-4 py-4 bg-gray-300">
         <h2 class="text-lg font-semibold">Personal Data</h2>
       </div>
-      <!-- Modal Body -->
-      <div class="p-4 modal-body">
 
-        <div role="alert" class="error-message"  data-form-target="errorMessage">
+      <!-- Modal Body -->
+      <div class="px-6 pt-2 pb-2 overflow-y-auto max-h-96">
+        <!-- Error Div -->
+        <div data-form-target="errorMessage">
           <div class="px-4 py-2 font-bold text-white bg-red-500 rounded-t">
             Error
           </div>
-          <div class="px-4 py-3 text-red-700 bg-red-100 border border-t-0 border-red-400 rounded-b">
+          <div class="px-4 py-4 text-red-700 bg-red-100 border border-t-0 border-red-400 rounded-b">
             <p>Record not saved</p>
           </div>
         </div>
 
-        <div data-form-target="successMessage" class="px-4 py-3 text-teal-900 bg-teal-100 border-t-4 border-teal-500 rounded-b shadow-md success-message" role="alert">
-          <div class="flex">
-            <div class="py-1"><svg class="w-6 h-6 mr-4 text-teal-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
-            <div>
-              <p class="font-bold">Record Saved</p>
-            </div>
+        <!-- Success Div -->
+        <div data-form-target="successMessage">
+          <div class="px-4 py-2 font-bold text-white bg-green-500 rounded-t">
+            Success
+          </div>
+          <div class="px-4 py-4 text-green-700 bg-green-100 border border-t-0 border-green-400 rounded-b">
+            <p>Record saved</p>
           </div>
         </div>
 
@@ -90,10 +91,11 @@
           </div>
         <% end %>
       </div>
+
       <!-- Modal Footer -->
-      <div class="flex justify-end px-4 py-5 pt-4 modal-footer">
-        <button id="personalDataModalCloseBtn"  data-action="click->modal-form#close_personal_data_modal" type="button" class="px-4 py-2 mr-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-500">Cancel</button>
-        <%= button_tag class:"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700", data: {form_target: "userFormSubmitBtn"}, type: 'submit', form: 'user-form' do %>
+      <div class="flex justify-end px-4 pt-8 pb-4">
+        <button id="personalDataModalCloseBtn" class="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-800" type="button" data-action="click->modal-form#close_personal_data_modal">Cancel</button>
+        <%= button_tag class:"px-4 py-2 ml-2 font-bold text-white bg-blue-500 rounded", data: {form_target: "userFormSubmitBtn"}, type: 'submit', form: 'user-form' do %>
           Save
         <% end %>
       </div>
@@ -101,24 +103,29 @@
   </div>
 
   <!-- Employment Modal-->
-  <div data-modal-form-target="employmentModal" data-form-target="employmentModal" data-employment-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full overflow-y-auto modal">
-    <div data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" id="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50 modal-overlay"></div>
+  <div data-modal-form-target="employmentModal" data-form-target="employmentModal" data-employment-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full">
+    <div data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" id="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-    <div data-controller="employment" class="z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md">
+    <div data-controller="employment" class="z-50 w-11/12 mx-auto bg-white rounded shadow-lg md:max-w-md">
       <!-- Modal Header -->
-      <div class="px-4 py-2 bg-gray-300 modal-header">
+      <div class="px-4 py-4 bg-gray-300">
         <h2 class="text-lg font-semibold">Employment</h2>
       </div>
 
-      <%= render partial: 'modal_dashboards/partials/employment_form' %>
+      <!-- Modal Body -->
+      <div data-employment-target="modalBodysDiv" class="px-4 py-4 overflow-y-auto max-h-96">
+        <%= render partial: 'modal_dashboards/partials/employment_form' %>
+      </div>
 
-      <div data-employment-target="employmentModalFooter" class="flex justify-end px-4 py-5 pt-4 modal-footer">
-        <button id="employmentModalCloseBtn"  data-action="click->modal-form#close_employment_modal" type="button" class="px-4 py-2 mr-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-500">Cancel</button>
-        <%= button_tag class:"px-4 py-2 mr-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-500", id: "addemploymentFieldsBtn", data: {employment_target: "addemploymentFieldsBtn", action: 'click->employment#addNewEmploymentForm'}, type: 'submit' do %>
+      <!-- Modal Footer -->
+      <div class="flex justify-end px-2 pt-8 pb-4">
+        <%= button_tag class:"px-4 py-2 mr-12 font-bold text-white bg-red-400 rounded hover:bg-red-500", id: "addemploymentFieldsBtn", data: {employment_target: "addemploymentFieldsBtn", action: 'click->employment#addNewEmploymentForm'}, type: 'submit' do %>
           Add Fields
         <% end %>
 
-        <%= button_tag class:"px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700", data: {employment_target: "submitAllBtn", action: 'click->employment#submitAllForms'}, type: 'submit' do %>
+        <button id="employmentModalCloseBtn" class="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-800" data-action="click->modal-form#close_employment_modal" type="button">Cancel</button>
+
+        <%= button_tag class:"px-4 py-2 font-bold text-white bg-blue-500 rounded", data: {employment_target: "submitAllBtn", action: 'click->employment#submitAllForms'}, type: 'submit' do %>
           Save all Records
         <% end %>
       </div>

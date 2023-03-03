@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["employerName", "startDate", "endDate", "submitAllBtn", "employmentModal", "employmentModalFooter"]
+  static targets = ["employerName", "startDate", "endDate", "submitAllBtn", "employmentModal", "modalBodysDiv"]
 
   connect() {
     // this.loadEmploymentForm();
@@ -55,7 +55,8 @@ export default class extends Controller {
     fetch('/employment_form')
     .then(response => response.text())
     .then(html => {
-      this.employmentModalFooterTarget.insertAdjacentHTML('beforebegin', html);
+      this.modalBodysDivTarget.insertAdjacentHTML("beforeend", html);
+      this.modalBodysDivTarget.scrollTop = 0;
     })
   }
 
