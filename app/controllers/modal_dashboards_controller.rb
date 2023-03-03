@@ -46,10 +46,6 @@ class ModalDashboardsController < ApplicationController
     render partial: 'modal_dashboards/partials/employment_form'
   end
 
-  # def initial_employment_form
-  #   render partial: 'modal_dashboards/partials/initial_employment_form'
-  # end
-
   private
     def user_params
       params.require(:user).permit(:first_name, :last_name, :nick_name, :email, :phone_number)

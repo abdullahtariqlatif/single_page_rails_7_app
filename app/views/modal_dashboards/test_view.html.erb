@@ -104,7 +104,7 @@
 
   <!-- Employment Modal-->
   <div data-modal-form-target="employmentModal" data-form-target="employmentModal" data-employment-target="employmentModal" id="employmentModal" class="fixed top-0 left-0 flex items-center justify-center hidden w-full h-full">
-    <div data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" id="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50"></div>
+    <div data-modal-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" data-form-target="employmentModalOverlay" id="employmentModalOverlay" class="absolute w-full h-full bg-gray-900 opacity-50"></div>
 
     <div data-controller="employment" class="z-50 w-11/12 mx-auto bg-white rounded shadow-lg md:max-w-md">
       <!-- Modal Header -->
@@ -113,7 +113,7 @@
       </div>
 
       <!-- Modal Body -->
-      <div data-employment-target="modalBodysDiv" class="px-4 py-4 overflow-y-auto max-h-96">
+      <div data-modal-form-target="modalBodysDiv" data-employment-target="modalBodysDiv" class="px-4 py-4 overflow-y-auto max-h-96">
         <%= render partial: 'modal_dashboards/partials/employment_form' %>
       </div>
 

@@ -10,5 +10,4 @@ Rails.application.routes.draw do
   post 'modal_dashboards/create_user', to: 'modal_dashboards#create_user'
   post 'modal_dashboards/create_employment', to: 'modal_dashboards#create_employment'
   get '/employment_form', to: 'modal_dashboards#employment_form'
-  get '/initial_employment_form', to: 'modal_dashboards#initial_employment_form'
 end

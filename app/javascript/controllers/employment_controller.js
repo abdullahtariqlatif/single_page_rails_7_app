@@ -2,10 +2,11 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["employerName", "startDate", "endDate", "submitAllBtn", "employmentModal", "modalBodysDiv"]
+  static targets = ["employerName", "startDate", "endDate", "submitAllBtn", "employmentModal", "employmentModalOverlay", "modalBodysDiv"]
 
   connect() {
-    // this.loadEmploymentForm();
+    this.disableSubmitAllBtn();
+
     // this.startDateTarget.disabled = true
     // this.startDateTarget.classList.add("bg-gray-300")
 
@@ -57,6 +58,9 @@ export default class extends Controller {
     .then(html => {
       this.modalBodysDivTarget.insertAdjacentHTML("beforeend", html);
       this.modalBodysDivTarget.scrollTop = 0;
+
+      // Reinitialize the stimulus controller
+      this.connect();
     })
   }
 
@@ -80,12 +84,21 @@ export default class extends Controller {
     input.classList.remove('error-message');
   }
 
+  close_employment_modal() {
+    this.employmentModalTarget.classList.add('hidden');
+    this.employmentModalOverlayTarget.classList.add('hidden');
 
-  // loadEmploymentForm() {
-  //   fetch('/initial_employment_form')
-  //   .then(response => response.text())
-  //   .then(html => {
-  //     this.employmentModalTarget.innerHTML = html;
-  //   })
-  // }
+    this.loadEmploymentForm();
+  }
+
+  loadEmploymentForm() {
+    fetch('/employment_form')
+    .then(response => response.text())
+    .then(html => {
+      this.modalBodysDivTarget.innerHTML =  html;
+
+      // Reinitialize the stimulus controller
+      this.connect();
+    })
+  }
 }
